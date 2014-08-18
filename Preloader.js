@@ -27,6 +27,8 @@ BunnyDefender.Preloader.prototype = {
 			,	'fonts/eightbitwonder.fnt'
 		);
 
+		this.load.image('hill', 'images/hill.png');
+		this.load.image('sky', 'images/sky.png');
 	}
 
 	,create: function(){
