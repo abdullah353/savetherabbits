@@ -18,6 +18,15 @@ BunnyDefender.Preloader.prototype = {
 		this.titleText = this.add.image(this.world.centerX,this.world.centerY-400, 'titleimage');
 		// set the transform point to center of object
 		this.titleText.anchor.setTo(0.5, 0.5);
+
+		this.load.image('titlescreen', 'images/TitleBG.png');
+		
+		this.load.bitmapFont(
+				'eightbitwonder'
+			, 'fonts/eightbitwonder.png'
+			,	'fonts/eightbitwonder.fnt'
+		);
+
 	}
 
 	,create: function(){
@@ -27,5 +36,6 @@ BunnyDefender.Preloader.prototype = {
 	,update: function(){
 		// constanly run after create function
 		this.ready = true;
+		this.state.start('StartMenu');
 	}
 };
