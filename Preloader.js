@@ -39,6 +39,7 @@ BunnyDefender.Preloader.prototype = {
 			,	'images/spritesheets/SpaceRock.png'
 			, 'images/spritesheets/SpaceRock.xml'
 		);
+		this.load.image('explosion','images/explosion.png');
 	}
 
 	,create: function(){
