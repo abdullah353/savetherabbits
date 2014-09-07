@@ -45,7 +45,7 @@ BunnyDefender.Game.prototype = {
 			this.assignBunnyMovement(b);
 		};
 	}
-	,update: function() {}
+
 	,assignBunnyMovement: function(b){
 		bposition = Math.floor(this.rnd.realInRange(50, this.world.width-50));
 		bdelay = this.rnd.integerInRange(2000,6000);
@@ -122,5 +122,53 @@ BunnyDefender.Game.prototype = {
 		this.burst.emitX = pointer.x;
 		this.burst.emitY = pointer.y;
 		this.burst.start(true, 2000, null, 20 );
+	}
+	,burstCollision: function(r, b){
+		this.respawnRock(r);
+	}
+	,bunnyCollision: function(r, b){
+		if(b.exists){
+			this.respawnRock(r);
+			b.kill();
+			this.totalBunnies--;
+			this.checkBunniesLeft();
+		}
+	}
+	,friendlyFire: function(b, e){
+		if(b.exists){
+			b.kill();
+			this.totalBunnies--;
+			this.checkBunniesLeft();
+		}
+	}
+	,checkBunniesLeft: function(){
+		if(this.totalBunnies <= 0){
+
+		}
+	}
+	,update: function() {
+		this.physics.arcade.overlap(
+			this.spacerockgroup
+			,this.burst
+			,this.burstCollision
+			,null
+			,this
+		);
+		this.physics.arcade.overlap(
+			this.spacerockgroup
+			,this.bunnyGroup
+			,this.bunnyCollision
+			,null
+			,this
+		);
+
+		this.physics.arcade.overlap(
+			this.bunnyGroup
+			,this.burst
+			,this.friendlyFire
+			,null
+			,this
+		);
+
 	}
 }
